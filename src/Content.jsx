@@ -57,25 +57,27 @@ export function Content() {
         onCategorySelect={handleCategorySelect}
       />
       <Modal show={isModalOpen} onClose={handleCloseModal}>
-        <h2>Exercises for Selected Category</h2>
-        <ul>
-          {selectedCategoryExercises
-            .filter((exercise) => exercise.category_id === selectedCategoryId) // Filter exercises by category_id
-            .map((exercise) => (
-              <li key={exercise.id}>
-                <h3>{exercise.name}</h3>
-                <p>Description: {exercise.description}</p>
-                <div>
-                  <p>Start Position:</p>
-                  <img src={exercise.start_image_url} alt="Start" style={{ maxWidth: "200px", maxHeight: "200px" }} />
+        <div className="modal-content">
+          <h2>Exercises for Selected Category</h2>
+          <div className="exercise-cards">
+            {selectedCategoryExercises
+              .filter((exercise) => exercise.category_id === selectedCategoryId)
+              .map((exercise) => (
+                <div key={exercise.id} className="exercise-card">
+                  <h3>{exercise.name}</h3>
+                  <p>Description: {exercise.description}</p>
+                  <div className="image-container">
+                    <p>Start Position:</p>
+                    <img src={exercise.start_image_url} alt="Start" />
+                  </div>
+                  <div className="image-container">
+                    <p>End Position:</p>
+                    <img src={exercise.end_image_url} alt="End" />
+                  </div>
                 </div>
-                <div>
-                  <p>End Position:</p>
-                  <img src={exercise.end_image_url} alt="End" style={{ maxWidth: "200px", maxHeight: "200px" }} />
-                </div>
-              </li>
-            ))}
-        </ul>
+              ))}
+          </div>
+        </div>
       </Modal>
     </main>
   );

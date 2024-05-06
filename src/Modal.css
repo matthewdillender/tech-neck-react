@@ -42,3 +42,32 @@
   right: 0.5em; /* Adjust as needed */
   z-index: 1003; /* Ensure the close button is in front of the modal */
 }
+.modal-content {
+  padding: 20px;
+}
+
+.exercise-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.exercise-card {
+  display: flex; /* Use flexbox layout */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px; /* Adjust padding as needed */
+}
+
+.start-image {
+  margin-right: 10px; /* Add margin between start image and content */
+}
+
+.end-image {
+  margin-left: auto; /* Push end image to the right */
+}
+
+.image-container img {
+  max-width: 30%; /* Ensure images don't exceed their container */
+  height: auto; /* Maintain aspect ratio */
+}
