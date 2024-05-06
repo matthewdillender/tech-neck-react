@@ -20,10 +20,8 @@ export function LoginModal() {
   return (
     <Modal show={isLoginModalVisible} onClose={handleCloseLoginModal}>
       <div className="login-modal-content">
-        <h2>Login</h2>
         <Login />
         <div className="separator"></div>
-        <h2>Signup</h2>
         <Signup />
         <button className="continue-button" onClick={handleContinueAsGuest}>
           Continue as Guest

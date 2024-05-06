@@ -4,6 +4,7 @@ import { useState } from "react";
 export function Login() {
   const [errors, setErrors] = useState([]);
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const [modalOpen, setModalOpen] = useState(true); // State to manage modal visibility
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,6 +18,8 @@ export function Login() {
         localStorage.setItem("jwt", response.data.jwt);
         event.target.reset();
         setLoginSuccess(true);
+        // Close modal on successful login
+        setModalOpen(false);
       })
       .catch((error) => {
         console.log(error.response);
@@ -24,24 +27,38 @@ export function Login() {
       });
   };
 
+  // Function to close modal
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <div id="login">
-      <h1>Login</h1>
-      {loginSuccess && <p>Login successful!</p>}
-      <ul>
-        {errors.map((error, index) => (
-          <li key={index}>{error}</li>
-        ))}
-      </ul>
-      <form onSubmit={handleSubmit}>
-        <div>
-          Email: <input name="email" type="email" />
+      {modalOpen && ( // Render the modal if modalOpen is true
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <h1>Login</h1>
+            {loginSuccess && <p>Login successful!</p>}
+            <ul>
+              {errors.map((error, index) => (
+                <li key={index}>{error}</li>
+              ))}
+            </ul>
+            <form onSubmit={handleSubmit}>
+              <div>
+                Email: <input name="email" type="email" />
+              </div>
+              <div>
+                Password: <input name="password" type="password" />
+              </div>
+              <button type="submit">Login</button>
+            </form>
+          </div>
         </div>
-        <div>
-          Password: <input name="password" type="password" />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+      )}
     </div>
   );
 }

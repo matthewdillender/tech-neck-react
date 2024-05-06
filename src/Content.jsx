@@ -8,6 +8,7 @@ export function Content() {
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [selectedCategoryExercises, setSelectedCategoryExercises] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userId, setUserId] = useState(null); // State to store the current user's user ID
 
   const handleIndexCategories = () => {
     axios
@@ -21,6 +22,28 @@ export function Content() {
   };
 
   useEffect(handleIndexCategories, []);
+
+  // Function to fetch the current user's user ID
+  const fetchUserId = () => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      axios
+        .get("http://localhost:3000/users.json", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setUserId(response.data.id);
+          console.log("User ID:", response.data.id); // Log user ID
+        })
+        .catch((error) => {
+          console.error("Error fetching user ID:", error);
+        });
+    }
+  };
+
+  useEffect(fetchUserId, []); // Fetch user ID when component mounts
 
   const handleCategorySelect = (categoryId) => {
     setSelectedCategoryId(categoryId);
