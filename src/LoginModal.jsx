@@ -1,3 +1,5 @@
+import React from "react";
+import { useState } from "react";
 import "./LoginModal.css";
 import { Modal } from "./Modal";
 import { Signup } from "./Signup";
