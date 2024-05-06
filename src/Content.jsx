@@ -28,7 +28,7 @@ export function Content() {
     const token = localStorage.getItem("jwt");
     if (token) {
       axios
-        .get("http://localhost:3000/users.json", {
+        .get("http://localhost:3000/users/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -72,6 +72,12 @@ export function Content() {
     setSelectedCategoryExercises([]); // Clear exercises when modal is closed
   };
 
+  // Function to handle exercise card click
+  const handleExerciseCardClick = (exerciseId) => {
+    console.log("Exercise ID:", exerciseId);
+    // Perform Axios request to look up exercise details or perform any action needed with exercise ID
+  };
+
   return (
     <main>
       <CategoriesIndex
@@ -86,18 +92,24 @@ export function Content() {
             {selectedCategoryExercises
               .filter((exercise) => exercise.category_id === selectedCategoryId)
               .map((exercise) => (
-                <div key={exercise.id} className="exercise-card">
-                  <h3>{exercise.name}</h3>
-                  <p>Description: {exercise.description}</p>
-                  <div className="image-container">
-                    <p>Start Position:</p>
-                    <img src={exercise.start_image_url} alt="Start" />
+                <button
+                  key={exercise.id}
+                  className="exercise-card-button"
+                  onClick={() => handleExerciseCardClick(exercise.id)}
+                >
+                  <div className="exercise-card">
+                    <h3>{exercise.name}</h3>
+                    <p>Description: {exercise.description}</p>
+                    <div className="image-container">
+                      <p>Start Position:</p>
+                      <img src={exercise.start_image_url} alt="Start" />
+                    </div>
+                    <div className="image-container">
+                      <p>End Position:</p>
+                      <img src={exercise.end_image_url} alt="End" />
+                    </div>
                   </div>
-                  <div className="image-container">
-                    <p>End Position:</p>
-                    <img src={exercise.end_image_url} alt="End" />
-                  </div>
-                </div>
+                </button>
               ))}
           </div>
         </div>
