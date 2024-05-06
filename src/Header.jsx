@@ -1,9 +1,10 @@
 import { LogoutLink } from "./Logout";
+import "./Header.css";
 
 export function Header() {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container">
           <div className="navbar-brand">
             <img
@@ -12,9 +13,11 @@ export function Header() {
               style={{ width: "200px", height: "200px", marginRight: "10px" }}
             />
             <h1 style={{ textAlign: "left", marginBottom: "0" }}>Fix Your Tech Neck!!!</h1>
-            <div className="d-flex" style={{ position: "absolute", bottom: "10px", right: "10px" }}>
+          </div>
+          <div className="d-flex">
+            <button className="logout-button">
               <LogoutLink />
-            </div>
+            </button>
           </div>
         </div>
       </nav>

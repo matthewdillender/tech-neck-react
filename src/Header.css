@@ -1,0 +1,23 @@
+.navbar {
+  background-color: #f0f0f0; /* Light grey background color */
+  padding: 10px 0; /* Add padding to the navbar */
+  position: relative; /* Make the navbar a positioned parent */
+  
+}
+
+.logout-button {
+  background-color: #dc3545; /* Red background color */
+  color: #fff; /* White text color */
+  border: none; /* Remove border */
+  padding: 8px 16px; /* Add padding to the button */
+  border-radius: 4px; /* Add border radius */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+  position: absolute;
+  top: 10px; /* Adjust the top position as needed */
+  right: 10px; /* Adjust the right position as needed */
+}
+
+.logout-button:hover {
+  background-color: #c82333; /* Darker red on hover */
+}

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import "./Header.css";
 
 export function LogoutLink() {
   const [logoutSuccess, setLogoutSuccess] = useState(false); // New state variable
