@@ -65,6 +65,14 @@ export function Content() {
               <li key={exercise.id}>
                 <h3>{exercise.name}</h3>
                 <p>Description: {exercise.description}</p>
+                <div>
+                  <p>Start Position:</p>
+                  <img src={exercise.start_image_url} alt="Start" style={{ maxWidth: "200px", maxHeight: "200px" }} />
+                </div>
+                <div>
+                  <p>End Position:</p>
+                  <img src={exercise.end_image_url} alt="End" style={{ maxWidth: "200px", maxHeight: "200px" }} />
+                </div>
               </li>
             ))}
         </ul>
