@@ -1,4 +1,3 @@
-// Content.jsx
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { CategoriesIndex } from "./CategoriesIndex";
@@ -65,10 +64,23 @@ export function Content({ currentUser }) {
     setSelectedCategoryExercises([]); // Clear exercises when modal is closed
   };
 
-  // Function to handle exercise card click
+  // Function to handle exercise card click and create routine
   const handleExerciseCardClick = (exercise) => {
     console.log("Current User ID:", currentUser ? currentUser.id : "Not logged in");
     console.log("Clicked Exercise:", exercise);
+
+    // Make POST request to create routine
+    axios
+      .post("http://localhost:3000/routines.json", {
+        user_id: currentUser.id,
+        exercise_id: exercise.id,
+      })
+      .then((response) => {
+        console.log("Routine created successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error creating routine:", error);
+      });
   };
 
   return (
