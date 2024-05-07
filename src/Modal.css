@@ -72,6 +72,11 @@
 .end-image {
   margin-left: auto; /* Push end image to the right */
 }
+.exercise-card-button {
+  border: none;
+  padding: 0;
+  background: none;
+}
 
 .image-container img {
   max-width: 30%; /* Ensure images don't exceed their container */
