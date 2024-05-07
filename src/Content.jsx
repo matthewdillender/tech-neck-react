@@ -77,6 +77,8 @@ export function Content({ currentUser }) {
       })
       .then((response) => {
         console.log("Routine created successfully:", response.data);
+        // Close modal after adding exercise to routine
+        handleCloseModal();
       })
       .catch((error) => {
         console.error("Error creating routine:", error);
