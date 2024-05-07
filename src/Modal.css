@@ -97,6 +97,19 @@
   padding: 10px; /* Adjust padding as needed */
 }
 
+.routine-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.routine-card p {
+  margin-bottom: 15px;
+}
+
+.routine-card button:hover {
+  background-color: #c82333;
+}
+
 .routine-card:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 3), /* Increase shadow by 80% on hover */
   0 -4px 8px rgba(0, 0, 0, 0.18) inset;
