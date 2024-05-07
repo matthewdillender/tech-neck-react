@@ -22,6 +22,15 @@ export function Content({ currentUser }) {
     console.log("currentUser state updated:", currentUser);
   }, [currentUser]);
 
+  useEffect(() => {
+    console.log("Routine data:", routines); // Check if routines data is fetched
+    if (routines.length > 0) {
+      console.log("First routine:", routines[0]); // Check data of the first routine
+      console.log("Exercise data:", routines[0].exercise); // Check exercise data of the first routine
+      console.log("Category data:", routines[0].exercise.category); // Check category data of the first routine's exercise
+    }
+  }, [routines]);
+
   // Function to fetch categories
   const handleIndexCategories = () => {
     axios
@@ -154,9 +163,15 @@ export function Content({ currentUser }) {
         <div className="routine-cards">
           {routines.map((routine) => (
             <div key={routine.id} className="routine-card">
-              <h3>Routine ID: {routine.id}</h3>
-              <p>User ID: {routine.user_id}</p>
-              <p>Exercise ID: {routine.exercise_id}</p>
+              {routine.exercise && (
+                <>
+                  <h3>Category: {routine.category.name}</h3>
+                  <h3>{routine.exercise.name}</h3>
+                  <p>Description: {routine.exercise.description}</p>
+                  <img src={routine.exercise.start_image_url} alt="Start" />
+                  <img src={routine.exercise.end_image_url} alt="End" />
+                </>
+              )}
             </div>
           ))}
         </div>
