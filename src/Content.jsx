@@ -1,15 +1,27 @@
+// Content.jsx
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { CategoriesIndex } from "./CategoriesIndex";
 import { Modal } from "./Modal"; // Assuming you have a Modal component
 
-export function Content() {
+export function Content({ currentUser }) {
   const [categories, setCategories] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [selectedCategoryExercises, setSelectedCategoryExercises] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userId, setUserId] = useState(null); // State to store the current user's user ID
 
+  useEffect(() => {
+    console.log("Content component mounted");
+    return () => {
+      console.log("Content component unmounted");
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log("currentUser state updated:", currentUser);
+  }, [currentUser]);
+
+  // Function to fetch categories
   const handleIndexCategories = () => {
     axios
       .get("http://localhost:3000/categories.json")
@@ -23,33 +35,13 @@ export function Content() {
 
   useEffect(handleIndexCategories, []);
 
-  // Function to fetch the current user's user ID
-  const fetchUserId = () => {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      axios
-        .get("http://localhost:3000/users/me", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          setUserId(response.data.id);
-          console.log("User ID:", response.data.id); // Log user ID
-        })
-        .catch((error) => {
-          console.error("Error fetching user ID:", error);
-        });
-    }
-  };
-
-  useEffect(fetchUserId, []); // Fetch user ID when component mounts
-
+  // Function to handle category selection
   const handleCategorySelect = (categoryId) => {
     setSelectedCategoryId(categoryId);
     setIsModalOpen(true); // Open the modal
   };
 
+  // Function to fetch exercises for a category
   const fetchExercisesForCategory = (categoryId) => {
     axios
       .get(`http://localhost:3000/exercises.json?category_id=${categoryId}`)
@@ -67,15 +59,16 @@ export function Content() {
     }
   }, [selectedCategoryId]);
 
+  // Function to close modal
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedCategoryExercises([]); // Clear exercises when modal is closed
   };
 
   // Function to handle exercise card click
-  const handleExerciseCardClick = (exerciseId) => {
-    console.log("Exercise ID:", exerciseId);
-    // Perform Axios request to look up exercise details or perform any action needed with exercise ID
+  const handleExerciseCardClick = (exercise) => {
+    console.log("Current User ID:", currentUser ? currentUser.id : "Not logged in");
+    console.log("Clicked Exercise:", exercise);
   };
 
   return (
@@ -95,7 +88,7 @@ export function Content() {
                 <button
                   key={exercise.id}
                   className="exercise-card-button"
-                  onClick={() => handleExerciseCardClick(exercise.id)}
+                  onClick={() => handleExerciseCardClick(exercise)}
                 >
                   <div className="exercise-card">
                     <h3>{exercise.name}</h3>

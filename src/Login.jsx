@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-export function Login() {
+export function Login({ setCurrentUser }) {
   const [errors, setErrors] = useState([]);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [modalOpen, setModalOpen] = useState(true); // State to manage modal visibility
