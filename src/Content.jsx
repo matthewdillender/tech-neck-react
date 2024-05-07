@@ -8,6 +8,8 @@ export function Content({ currentUser }) {
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [selectedCategoryExercises, setSelectedCategoryExercises] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isRoutineIndexModalOpen, setIsRoutineIndexModalOpen] = useState(false);
+  const [routines, setRoutines] = useState([]); // State to store routine index data
 
   useEffect(() => {
     console.log("Content component mounted");
@@ -85,6 +87,26 @@ export function Content({ currentUser }) {
       });
   };
 
+  // Function to open routine index modal
+  const handleOpenRoutineIndexModal = () => {
+    setIsRoutineIndexModalOpen(true);
+    // Fetch routine index data
+    axios
+      .get("http://localhost:3000/routines.json")
+      .then((response) => {
+        setRoutines(response.data);
+        console.log("Routines Index:", response.data); // Log fetched routines index data
+      })
+      .catch((error) => {
+        console.error("Error fetching routines:", error);
+      });
+  };
+
+  // Function to close routine index modal
+  const handleCloseRoutineIndexModal = () => {
+    setIsRoutineIndexModalOpen(false);
+  };
+
   return (
     <main>
       <CategoriesIndex
@@ -119,6 +141,24 @@ export function Content({ currentUser }) {
                 </button>
               ))}
           </div>
+        </div>
+      </Modal>
+      {/* Button to open routine index modal in navbar */}
+      <button onClick={handleOpenRoutineIndexModal}>Open Routine Index</button>
+      {/* Button to open routine index modal in footer */}
+      <button onClick={handleOpenRoutineIndexModal}>Open Routine Index</button>
+      {/* Routine Index Modal */}
+      <Modal show={isRoutineIndexModalOpen} onClose={handleCloseRoutineIndexModal}>
+        {/* Content for Routine Index Modal */}
+        <h2>Routine Index</h2>
+        <div className="routine-cards">
+          {routines.map((routine) => (
+            <div key={routine.id} className="routine-card">
+              <h3>Routine ID: {routine.id}</h3>
+              <p>User ID: {routine.user_id}</p>
+              <p>Exercise ID: {routine.exercise_id}</p>
+            </div>
+          ))}
         </div>
       </Modal>
     </main>
