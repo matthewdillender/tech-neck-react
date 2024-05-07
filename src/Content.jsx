@@ -116,6 +116,21 @@ export function Content({ currentUser }) {
     setIsRoutineIndexModalOpen(false);
   };
 
+  // Function to handle routine deletion
+  const handleDeleteRoutine = (routineId) => {
+    // Make DELETE request to delete routine
+    axios
+      .delete(`http://localhost:3000/routines/${routineId}.json`)
+      .then((response) => {
+        console.log("Routine deleted successfully");
+        // Remove the deleted routine from the state
+        setRoutines((prevRoutines) => prevRoutines.filter((routine) => routine.id !== routineId));
+      })
+      .catch((error) => {
+        console.error("Error deleting routine:", error);
+      });
+  };
+
   return (
     <main>
       <CategoriesIndex
