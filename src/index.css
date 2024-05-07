@@ -1,14 +1,4 @@
 html {
   scroll-behavior: smooth;
 }
-.neurons-background {
-  background-color: #141414; /* Dark background color */
-  background-image: 
-    radial-gradient(circle, #363636 1%, transparent 1%),
-    radial-gradient(circle, #363636 1%, transparent 1%),
-    radial-gradient(circle, #363636 1%, transparent 1%),
-    radial-gradient(circle, #363636 1%, transparent 1%);
-  background-size: 60px 60px; /* Adjust the size of the circles */
-  background-position: 0 0, 120px 120px, 60px 60px, -120px -120px; /* Adjust positions for the circles */
-}
 

@@ -7,12 +7,12 @@ export function Header() {
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container">
           <div className="navbar-brand">
+            <h1 style={{ textAlign: "center", marginTop: "0" }}>Fix Your Tech Neck!!!</h1>
             <img
               src="https://teachmeanatomy.info/wp-content/uploads/C-spine-picture.jpg"
               alt="C-Spine"
               style={{ width: "200px", height: "200px", marginRight: "10px" }}
             />
-            <h1 style={{ textAlign: "left", marginBottom: "0" }}>Fix Your Tech Neck!!!</h1>
           </div>
           <div className="d-flex">
             <button className="logout-button">

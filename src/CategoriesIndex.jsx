@@ -19,7 +19,7 @@ export function CategoriesIndex(props) {
 
   return (
     <div className="categories-container">
-      <h1>Exercise Categories</h1>
+      <h1 style={{ textAlign: "center", marginTop: "2em" }}>Exercise Categories</h1>
       <div className="category-list">
         {props.categories.map((category) => (
           <button key={category.id} className="category-card" onClick={() => props.onCategorySelect(category.id)}>
