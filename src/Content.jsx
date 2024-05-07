@@ -170,6 +170,7 @@ export function Content({ currentUser }) {
                   <p>Description: {routine.exercise.description}</p>
                   <img src={routine.exercise.start_image_url} alt="Start" />
                   <img src={routine.exercise.end_image_url} alt="End" />
+                  <button onClick={() => handleDeleteRoutine(routine.id)}>Delete</button>
                 </>
               )}
             </div>
