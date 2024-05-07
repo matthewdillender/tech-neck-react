@@ -191,7 +191,6 @@ export function Content({ currentUser }) {
             ))}
           </div>
         </Modal>
-        <Footer handleOpenRoutineIndexModal={handleOpenRoutineIndexModal} />
       </main>
     </>
   );
