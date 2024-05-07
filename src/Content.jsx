@@ -181,7 +181,7 @@ export function Content({ currentUser }) {
               {routine.exercise && (
                 <>
                   <h3>Category: {routine.category.name}</h3>
-                  <h3>{routine.exercise.name}</h3>
+                  <h4>{routine.exercise.name}</h4>
                   <p>Description: {routine.exercise.description}</p>
                   <img src={routine.exercise.start_image_url} alt="Start" />
                   <img src={routine.exercise.end_image_url} alt="End" />
