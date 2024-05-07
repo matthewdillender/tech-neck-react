@@ -1,7 +1,9 @@
-export function Footer() {
+import React from "react";
+
+export function Footer({ handleOpenRoutineIndexModal }) {
   return (
     <footer>
-      <p>Copyright 2022</p>
+      <button onClick={handleOpenRoutineIndexModal}>Open Routine Index</button>
     </footer>
   );
 }
